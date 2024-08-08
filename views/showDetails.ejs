@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include("./part/head") %>
+    <title>Document</title>
+</head>
+<body>
+    <%- include("./part/nav") %>
+   <br>
+   <br>
+   <br>
+   <br>
+    <div class="font-sans">
+        <div class="p-4 lg:max-w-6xl max-w-2xl max-lg:mx-auto">
+            <div class="grid items-start grid-cols-1 lg:grid-cols-2 gap-8 max-lg:gap-16">
+                <div class="w-full lg:sticky top-0 text-center">
+                    <div class="lg:h-[560px]">
+                        <img src="/<%= venue.venueImage %>" alt="Product" class="lg:w-14/15 w-full h-full rounded-md object-cover object-top" />
+                    </div>
+                </div>
+
+                <div>
+                    <div class="flex flex-wrap items-start gap-4">
+                        <div>
+                            <h2 class="text-2xl font-bold text-gray-800"><%= venue.venueName %></h2>
+                            <p class="text-sm text-gray-500 mt-2"><%= venue.cityName %></p>
+                        </div>
+                        
+                        
+                        <div class="ml-auto flex flex-wrap gap-4">
+                            <button type="button" class="px-2.5 py-1.5 bg-gray-100 text-xs text-gray-800 rounded-md flex items-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="12px" fill="currentColor" viewBox="0 0 512 512">
+                                    <path d="M453.332 85.332c0 38.293-31.039 69.336-69.332 69.336s-69.332-31.043-69.332-69.336C314.668 47.043 345.707 16 384 16s69.332 31.043 69.332 69.332zm0 0" data-original="#000000" />
+                                    <path d="M384 170.668c-47.063 0-85.332-38.273-85.332-85.336C298.668 38.273 336.938 0 384 0s85.332 38.273 85.332 85.332c0 47.063-38.27 85.336-85.332 85.336zM384 32c-29.418 0-53.332 23.938-53.332 53.332 0 29.398 23.914 53.336 53.332 53.336s53.332-23.938 53.332-53.336C437.332 55.938 413.418 32 384 32zm69.332 394.668C453.332 464.957 422.293 496 384 496s-69.332-31.043-69.332-69.332c0-38.293 31.039-69.336 69.332-69.336s69.332 31.043 69.332 69.336zm0 0" data-original="#000000" />
+                                    <path d="M384 512c-47.063 0-85.332-38.273-85.332-85.332 0-47.063 38.27-85.336 85.332-85.336s85.332 38.273 85.332 85.336c0 47.059-38.27 85.332-85.332 85.332zm0-138.668c-29.418 0-53.332 23.938-53.332 53.336C330.668 456.063 354.582 480 384 480s53.332-23.938 53.332-53.332c0-29.398-23.914-53.336-53.332-53.336zM154.668 256c0 38.293-31.043 69.332-69.336 69.332C47.043 325.332 16 294.293 16 256s31.043-69.332 69.332-69.332c38.293 0 69.336 31.039 69.336 69.332zm0 0" data-original="#000000" />
+                                    <path d="M85.332 341.332C38.273 341.332 0 303.062 0 256s38.273-85.332 85.332-85.332c47.063 0 85.336 38.27 85.336 85.332s-38.273 85.332-85.336 85.332zm0-138.664C55.914 202.668 32 226.602 32 256s23.914 53.332 53.332 53.332c29.422 0 53.336-23.934 53.336-53.332s-23.914-53.332-53.336-53.332zm0 0" data-original="#000000" />
+                                    <path d="M135.703 245.762c-7.426 0-14.637-3.864-18.562-10.774-5.825-10.218-2.239-23.254 7.98-29.101l197.95-112.852c10.218-5.867 23.253-2.281 29.1 7.977 5.825 10.218 2.24 23.254-7.98 29.101L146.238 242.965a21.195 21.195 0 0 1-10.535 2.797zm197.93 176c-3.586 0-7.211-.899-10.54-2.797L125.142 306.113c-10.22-5.824-13.801-18.86-7.977-29.101 5.8-10.239 18.856-13.844 29.098-7.977l197.953 112.852c10.219 5.824 13.8 18.86 7.976 29.101-3.945 6.91-11.156 10.774-18.558 10.774zm0 0" data-original="#000000" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <hr class="my-8" />
+
+                    <div class="flex flex-wrap gap-4 items-start">
+                        <div>
+                            <p class="text-gray-800 text-xl font-bold">Sports Available</p>
+                            <p class="text-gray-500 text-xl mt-4"> <span class="text-mg ml-1"><i class="fa-solid fa-fire-flame-curved" style="color: #000000;"></i> <%= venue.sportAva %></span></p>
+                        </div>
+                    </div>
+
+                    <hr class="my-8" />
+
+                    <div>
+                        <h3 class="text-xl font-bold text-gray-800">Timing</h3>
+                        <div class="flex flex-wrap gap-4 mt-4">
+                            <h2 class="text-mg text-gray-800"><i class="fa-solid fa-hourglass-start" style="color: #000000;"></i> <%= venue.timing %></h2>
+                        </div>
+                    </div>
+
+                    <hr class="my-8" />
+
+                    <div>
+                        <h3 class="text-xl font-bold text-gray-800">Pricing</h3>
+                        <div class="flex flex-wrap gap-4 mt-4">
+                            <h2 class="text-mg  text-gray-800"><i class="fa-solid fa-money-bill-1-wave" style="color: #000000;"></i> <%= venue.priceByTime %></h2>
+                        </div>
+                    </div>
+
+                    <hr class="my-8" />
+
+                    <div class="flex flex-wrap gap-4">
+                        <form method="get" action="/cart/<%= venue._id %>"> <button type="submit" class="min-w-[120px] px-4 py-3 bg-orange-500 hover:bg-gray-900 text-white text-sm font-semibold rounded-md">Book Now</button></form>
+                       <form method="get" action="/find"> <button type="submit" class="min-w-[100px] px-4 py-3 bg-orange-500 hover:bg-gray-900 text-white text-sm font-semibold rounded-md">Back to search</button></form>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-20 max-w-4xl">
+                <ul class="flex border-b">
+                    <li
+                        class="text-gray-800 font-semibold text-sm bg-gray-100 py-3 px-8 border-b-2 border-gray-800 cursor-pointer transition-all">
+                        Description</li>                        
+                </ul>
+                <div class="mt-8">
+                    <h3 class="text-xl font-bold text-gray-800">Facelity</h3>
+                    <p class="text-lg text-gray-500 mt-5"><i class="fa-solid fa-mug-hot" style="color: #000000;"></i> <%= venue.facelity %></p>
+                </div>
+                <div class="mt-8">
+                    <h3 class="text-xl font-bold text-gray-800">Location</h3>
+                    <p class="text-lg text-gray-500 mt-5"><i class="fa-solid fa-location-arrow" style="color: #000000;"></i> <%= venue.location %></p>
+                </div>
+                <div class="mt-8">
+                    <h3 class="text-xl font-bold text-gray-800">About Venue</h3>
+                    <p class="text-lg text-gray-500 mt-5"><i class="fa-solid fa-circle-info" style="color: #000000;"></i> <%= venue.aboutVenue %></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

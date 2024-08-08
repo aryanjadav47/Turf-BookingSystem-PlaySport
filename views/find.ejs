@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include("./part/head") %>
+    <title>Find</title>
+</head>
+<body>
+    <%- include("./part/nav") %>
+
+        
+        
+
+<br>
+<br>
+
+      <div class="bg-white-800">
+        <div class="bg-transparent">
+            <div class="mx-auto flex flex-col items-center py-12 sm:py-24">
+                <div class="w-11/12 sm:w-2/3 lg:flex justify-center items-center flex-col mb-5 sm:mb-0">
+                    <h1
+                        class="text-2xl sm:text-3xl md:text-3xl lg:text-5xl xl:text-5xl text-center text-gray-800 text-black font-black leading-10">
+                        Discover and Book 
+                        <span class="text-orange-500 text-orange-500">Top Sports Complexes</span>
+                        in your city.
+                    </h1>
+                    <p class="mt-5 sm:mt-10 lg:w-10/12 text-gray-600 text-gray-300 font-normal text-center text-xl">
+                        "Enter city or enter sport catagory to find."
+                    </p>
+                    <br>
+                    <br>
+
+                    <div class="flex space-x-4 p-4 items-center">
+                        <form method="GET" action="/find" class="filters">
+                        <input type="text" name="cityName" placeholder="enter city name.." value="<%= cityName || '' %>" class="border border-orange-300 rounded-l-lg p-2 flex-1 min-w-[150px]">
+                            &nbsp;
+                        
+                        <input type="" name="sportAva" placeholder="cricket | football..." value="<%= sportAva || '' %>" class="border border-orange-300 rounded-r-lg p-2 flex-1 min-w-[150px]">
+                        &nbsp;
+                        
+                        <button type="submit" class="bg-orange-500 text-white rounded-lg px-4 py-2">Search</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="max-w-screen-xl mx-auto p-5 sm:p-10 md:p-16">
+        <div class="grid grid-cols-1 md:grid-cols-3 sm:grid-cols-2 gap-10">
+            <% if (venues.length === 0) { %>
+                <p>No venue found</p>
+              <% } else { %>
+                <% venues.forEach(product => { %>
+            <div class="rounded overflow-hidden shadow-lg">
+                
+                <a href="#"></a>
+                <div class="relative">
+                    <a href="/show/<%= product._id %>">
+                        <img class="w-full"
+                            src="<%= product.venueImage %>"
+                            alt="">
+                        <div
+                            class="hover:bg-transparent transition duration-300 absolute bottom-0 top-0 right-0 left-0 bg-gray-900 opacity-25">
+                        </div>
+                    </a>
+                    <a  >
+                        <div
+                            class="absolute bottom-0 left-0 bg-orange-500 px-4 py-2 text-white text-sm hover:bg-white hover:text-indigo-600 transition duration-500 ease-in-out">
+                            Featured
+                        </div>
+                    </a>
+                    
+                </div>
+                <div class="px-6 py-4">
+    
+                    <a 
+                        class="font-semibold text-lg inline-block hover:text-indigo-600 transition duration-500 ease-in-out">
+                        <%= product.venueName %></a>
+                    <p class="text-gray-500 text-sm">
+                        <%= product.cityName %>
+                    </p><br>
+
+                    <p class="text-gray-500 text-sm"> <i class="fa-solid fa-location-dot"></i> - 
+                         <%= product.location %>
+                    </p><br>
+                    <p class="text-gray-500 text-sm"> <i class="fa-solid fa-list"></i> - 
+                        <%= product.sportAva %>
+                    </p><br>
+                    <form method="get" action="/show/<%= product._id %>"><button type="submit" class="bg-orange-500 text-white rounded-lg px-4 py-1"><i class="fa-solid fa-location-arrow"></i> Show More</button></form>
+                </div>
+            </div>
+            <% }) %>
+          <% } %>
+
+            
+        </div>
+    </div>
+
+
+
+    
+</body>
+</html>

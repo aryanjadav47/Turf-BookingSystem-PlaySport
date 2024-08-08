@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include("./part/head") %>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <%- include("./part/nav") %>
+
+    <br><br>
+
+  
+
+    <div class="container mx-auto mt-10">
+        <div class="sm:flex shadow-md my-10">
+            <form method="post" action="/turf/ven" >
+          <div class="  w-full  sm:w-3/4 bg-white px-10 py-10">
+            <div class="flex justify-between border-b pb-8">
+              <h1 class="font-semibold text-2xl">Booking Cart</h1>
+              
+            </div>
+            <div class="md:flex items-strech py-8 md:py-10 lg:py-8 border-t border-gray-50">
+              <div class="md:w-4/12 2xl:w-1/4 w-full">
+                <img src="/<%= venue.venueImage %>" alt="Black Leather Purse" class="h-full object-center object-cover md:block hidden" />
+                <!-- <img src="https://i.ibb.co/TTnzMTf/Rectangle-21.png" alt="Black Leather Purse" class="md:hidden w-full h-full object-center object-cover" /> -->
+              </div>
+
+              <div class="md:pl-3 md:w-8/12 2xl:w-3/4 flex flex-col justify-center">
+                <input type="text" name="cityname" value="<%= venue.cityName %>" class="text-xs leading-3 text-gray-800 md:pt-0 pt-4" readonly/>
+                <div class="flex items-center justify-between w-full">
+                  <input type="text" name="turfName" value="<%= venue.venueName %>" class="text-base font-black leading-none text-gray-800" readonly/>
+                </div>
+                <p class="text-xs leading-3 text-gray-600 pt-4">Sport : <%= venue.sportAva %></p>
+                <p class="text-xs leading-3 text-gray-600 py-4">Location : <%= venue.location %></p>
+                <p class="w-96 text-xs leading-3 text-gray-600">Timing : <%= venue.timing %></p><br>
+                <p class="w-96 text-xs leading-3 text-gray-600">Pricing : <%= venue.priceByTime %></p>
+                <div class="flex items-center justify-between pt-5">
+                  <div class="flex itemms-center">
+                     <a href="/show/<%- venue._id %>" class="text-xs leading-3 underline text-red-500 pl-5 cursor-pointer">Remove</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div id="summary" class=" w-full   sm:w-1/4   md:w-1/2     px-8 py-10">
+            <h1 class="font-semibold text-2xl border-b pb-8">Booking Summary</h1>
+            
+           
+            <div class="py-3">
+              <label
+                    for="promo"
+                    class="font-semibold inline-block mb-1 text-sm uppercase"
+                  >
+                    User Email
+                  </label>
+              <input
+                    type="text"
+                    name="userEmail"
+                    id="promo"
+                    value="<%= user.email %>"
+                    placeholder="Enter your email"
+                    class="p-2 text-sm w-full" readonly
+                  />
+            </div>
+
+            <div class="py-3">
+                <label
+                      for="promo"
+                      class="font-semibold inline-block mb-1 text-sm uppercase"
+                    >
+                      User Number
+                    </label>
+                <input
+                      type="text"
+                      name="userNumber"
+                      id="promo"
+                      
+                      placeholder="Enter your Number"
+                      class="p-2  text-sm w-full" required
+                    />
+              </div>
+              <div class="py-3">
+                <label
+                      for="promo"
+                      class="font-semibold inline-block mb-1 text-sm uppercase"
+                    >
+                      Date
+                    </label>
+                <input
+                      type="Date"
+                      name="bookingDate"
+                      id="inputdate"
+                      placeholder="Enter your Number"
+                      class="p-2  text-sm w-full" required
+                    />
+              </div>
+              <div class="py-3">
+                <label
+                      for="promo"
+                      class="font-semibold inline-block mb-1 text-sm uppercase"
+                    >
+                      Start time
+                    </label>
+                <input
+                      type="time"
+                      name="startTime"
+                      id="start-time" 
+                      step="3600"
+                      placeholder="Enter your Number"
+                      class="p-2  text-sm w-full" required
+                    />
+              </div>
+              <div class="py-3">
+                <label
+                      for="promo"
+                      class="font-semibold inline-block mb-1 text-sm uppercase"
+                    >
+                      End time
+                    </label>
+                <input
+                      type="time"
+                      name="endTime"
+                      id="end-time" 
+                      step="3600"
+                      placeholder="Enter your Number"
+                      class="p-2  text-sm w-full" required
+                    />
+              </div>
+
+            <div class="border-t mt-8">
+              <div class="flex font-semibold justify-between py-6 text-sm uppercase">
+                <span>Total cost</span>
+                <input type="text" id="cost-display" name="totalCost" readonly/>
+              </div>
+              <button id="btn" type="submit"  class="bg-orange-500 font-semibold hover:bg-orange-600 py-3 text-sm text-white uppercase w-full">
+                    Book
+                  </button>
+            </div>
+          </div>
+          </form>
+        </div>
+      </div>
+
+
+</body>
+<script>
+    $(function(){
+        var dtToday = new Date();
+        
+        var month = dtToday.getMonth() + 1;
+        var day = dtToday.getDate();
+        var year = dtToday.getFullYear();
+        if(month < 10)
+            month = '0' + month.toString();
+        if(day < 10)
+            day = '0' + day.toString();
+        var maxDate = year + '-' + month + '-' + day;
+        $('#inputdate').attr('min', maxDate);
+    });
+
+    
+
+        const startTimeInput = document.getElementById('start-time');
+        const endTimeInput = document.getElementById('end-time');
+        const costDisplay = document.getElementById('cost-display');
+
+        startTimeInput.addEventListener('change', calculateCost);
+        endTimeInput.addEventListener('change', calculateCost);
+
+        function calculateCost() {
+            const startTimeValue = startTimeInput.value;
+            const endTimeValue = endTimeInput.value;
+
+            if (startTimeValue && endTimeValue) {
+                const [startHours, startMinutes] = startTimeValue.split(':').map(Number);
+                const [endHours, endMinutes] = endTimeValue.split(':').map(Number);
+
+                const startTimeInMinutes = startHours * 60 + startMinutes;
+                const endTimeInMinutes = endHours * 60 + endMinutes;
+
+                const durationInMinutes = endTimeInMinutes - startTimeInMinutes;
+
+                if (durationInMinutes >= 60 && durationInMinutes <= 120 ) {
+                    let cost;
+                    if (durationInMinutes <= 60) {
+                        cost = 800;
+                    } else if (durationInMinutes <= 120) {
+                        cost = 1200;
+                    } 
+                    costDisplay.value = `${cost} Rs`;
+                } else {
+                    alert('Duration must be between 1 hour to 3 hours.');
+                    costDisplay.value = '0 Rs';
+                    endTimeInput.value = '';
+                }
+            } else {
+                costDisplay.value = '0 Rs';
+            }
+        }
+
+        
+    
+    </script>
+</html>

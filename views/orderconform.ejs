@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include("./part/head") %>
+    <title>Document</title>
+</head>
+<body>
+    <%- include("./part/nav")  %>
+    <br><br><br>
+
+    
+ 
+    <section class="py-24 relative">
+        <div class="w-full max-w-7xl px-4 md:px-5 lg-6 mx-auto">
+            <h2 class="font-manrope font-bold text-4xl leading-10 text-black text-center">
+                booking confirmed!
+            </h2>
+            <p class="mt-4 font-normal text-lg leading-8 text-gray-500 mb-11 text-center">Thanks for using our booking
+                sevice.</p>
+            <div class="main-box border border-gray-200 rounded-xl pt-6 max-w-xl max-lg:mx-auto lg:max-w-full">
+                <div
+                    class="flex flex-col lg:flex-row lg:items-center justify-between px-6 pb-6 border-b border-gray-200">
+                    
+                     
+                    
+                    <div class="data">
+                        
+                        <p class="font-semibold text-base leading-7 text-black">Booking ID: <span class="text-indigo-600 font-medium">#<%= Date.now() %></span></p>
+                        <p class="font-semibold text-base leading-7 text-black">User Email: <span class="text-indigo-600 font-medium"><%= user.email %></span></p>
+                        <p class="font-semibold text-base leading-7 text-black">Booking Date: <span class="text-indigo-600 font-medium"><%= new Date() %></span></p>
+                        </span></p>
+                    </div>
+                    
+                    <form method="get" action="/"> <button
+                        class="rounded-full py-3 px-7 font-semibold text-sm leading-7 text-white bg-orange-500 max-lg:mt-5 shadow-sm shadow-transparent transition-all duration-500 hover:bg-indigo-700 hover:shadow-indigo-400">Home
+                    </button></form>
+                </div>
+            </div>
+        </div>
+    </section>
+                                            
+    
+
+</body>
+</html>

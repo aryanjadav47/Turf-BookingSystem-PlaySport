@@ -1,0 +1,51 @@
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+<nav class="absolute inset-x-0 top-0 z-10 w-full">
+    <div class="px-4 mx-auto sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-16 lg:h-20">
+            <div class="flex-shrink-0">
+                <a href="/" title="" class="flex">
+                    <img class="w-auto h-8" src="https://i.ibb.co/kH6g3xz/playsport-high-resolution-logo-t.png" alt=""/>
+                </a>
+            </div>
+
+            <button type="button" id="menu-toggle" class="inline-flex p-2 text-black transition-all duration-200 rounded-md lg:hidden focus:bg-gray-100 hover:bg-gray-100">
+                <!-- Menu open: "hidden", Menu closed: "block" -->
+                <svg id="menu-open" class="block w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                </svg>
+
+                <!-- Menu open: "block", Menu closed: "hidden" -->
+                <svg id="menu-close" class="hidden w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+
+            <div id="nav-links" class="hidden ml-auto lg:flex lg:items-center lg:justify-center lg:space-x-10">
+                <a href="/" title="" class="text-base font-semibold text-black transition-all duration-200 hover:text-opacity-80"> Home </a>
+                <a href="/#feature" title="" class="text-base font-semibold text-black transition-all duration-200 hover:text-opacity-80"> Features </a>
+                <a href="/#contact" title="" class="text-base font-semibold text-black transition-all duration-200 hover:text-opacity-80"> Contact </a>
+                <a href="/find" title="" class="text-base font-semibold text-black transition-all duration-200 hover:text-opacity-80"> Book </a>
+                <div class="w-px h-5 bg-black/20"></div>
+                <% if (locals.user) { %>
+                    <a href="/logout" title="" class="inline-flex items-center justify-center px-5 py-2.5 text-base font-semibold transition-all duration-200 rounded-full bg-orange-500 text-white hover:bg-orange-600 focus:bg-orange-600" role="button"> Logout </a>
+                <% } else { %>
+                <a href="/login" title="" class="text-base font-semibold text-black transition-all duration-200 hover:text-opacity-80"> Log in </a>
+                <a href="/create" title="" class="inline-flex items-center justify-center px-5 py-2.5 text-base font-semibold transition-all duration-200 rounded-full bg-orange-500 text-white hover:bg-orange-600 focus:bg-orange-600" role="button"> create account </a>
+                <% } %>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<script>
+    const menuToggle = document.getElementById('menu-toggle');
+    const menuOpenIcon = document.getElementById('menu-open');
+    const menuCloseIcon = document.getElementById('menu-close');
+    const navLinks = document.getElementById('nav-links');
+
+    menuToggle.addEventListener('click', () => {
+        navLinks.classList.toggle('hidden');
+        menuOpenIcon.classList.toggle('hidden');
+        menuCloseIcon.classList.toggle('hidden');
+    });
+</script>
