@@ -51,6 +51,7 @@ app.get("/conform",venueRouter);
 app.get("/showbooking",venueRouter);
 app.get("/booking/delete/:id",venueRouter);
 app.get("/booking/update/:id",venueRouter);
+app.get("/cart",venueRouter);
 
 app.use("/user",userRouter);
 app.use("/con",userRouter);

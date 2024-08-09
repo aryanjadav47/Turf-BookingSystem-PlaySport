@@ -302,6 +302,7 @@ router.get("/delete/:id",async (req,res)=>{
 
 router.get("/find", async (req,res)=>{
     try {
+        let error=req.flash("error");
         const { cityName, sportAva } = req.query;
     
         // Build the query object
@@ -318,7 +319,7 @@ router.get("/find", async (req,res)=>{
         const venues = await venue.find(query);
     
         // Pass query parameters and products to the EJS template
-        res.render('find', { venues, cityName, sportAva, user : req.user });
+        res.render('find', { venues, cityName, sportAva, user : req.user,error });
       } catch (err) {
         res.status(500).send(err);
       }

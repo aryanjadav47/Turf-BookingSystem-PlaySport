@@ -109,6 +109,13 @@ router.get("/cart/:id",islogedin,async (req,res)=>{
 router.post("/ven",async (req,res)=>{
     try{
         let {cityname,turfName,userEmail,userNumber,bookingDate,startTime,endTime,totalCost}=req.body
+        let time= await  booking.findOne({ startTime: startTime,endTime:endTime});
+        let date= await  booking.findOne({ bookingDate: bookingDate});
+        if(date===time) {
+             req.flash("error","already booking on this time please select another timing!");
+             return res.redirect("/find");
+        }else{
+        
         await booking.create({
             cityname,
             turfName,
@@ -119,11 +126,14 @@ router.post("/ven",async (req,res)=>{
             endTime,
             totalCost
         });
-        return res.redirect("/conform/");
+        return res.redirect("/conform");
+    }
     } catch(err) {
         res.send(err);
     }
 });
+
+
 
 router.get("/conform",async(req,res)=>{
     try {
