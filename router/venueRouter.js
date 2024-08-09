@@ -5,6 +5,7 @@ let user=require("../model/user");
 let booking=require("../model/booking");
 let multer=require("multer");
 let islogedin=require("../middleware/isloggedin");
+// const venue = require("../model/venues");
 
 let storage=multer.diskStorage({
     destination:function(req,file,cb){
@@ -96,11 +97,12 @@ router.get("/show/:id",async (req,res)=>{
 
 router.get("/cart/:id",islogedin,async (req,res)=>{
     try{
-        let {email}=req.body;
+        let error=req.flash("error");
+        let {email,number}=req.body;
         let id=req.params.id;
         let result=await venue.findById(id);
-        let show=await user.findOneAndUpdate(email);
-        return res.render("cart",{ venue : result, user:show,user:req.user, booking : req.booking});
+        let show=await user.findOneAndUpdate(email,number);
+        return res.render("cart",{ venue : result, user:show,user:req.user, booking : req.booking,error});
     } catch(err){
         res.send(err);
     }
@@ -109,12 +111,23 @@ router.get("/cart/:id",islogedin,async (req,res)=>{
 router.post("/ven",async (req,res)=>{
     try{
         let {cityname,turfName,userEmail,userNumber,bookingDate,startTime,endTime,totalCost}=req.body
-        let time= await  booking.findOne({ startTime: startTime,endTime:endTime});
-        let date= await  booking.findOne({ bookingDate: bookingDate});
-        if(date===time) {
-             req.flash("error","already booking on this time please select another timing!");
-             return res.redirect("/find");
-        }else{
+        let venues=await venue.findOne();
+        let existingBooking = await booking.findOne({
+            turfName: turfName,
+            bookingDate: bookingDate,
+            $or: [
+                {
+                    startTime: { $lt: endTime },  
+                    endTime: { $gt: startTime }   
+                }
+            ]
+        });
+        
+        if (existingBooking && venues) {
+            req.flash("error", `${turfName} Already booked on ${bookingDate} from ${existingBooking.startTime} to ${existingBooking.endTime}. Please select another timing!`);
+            return res.redirect(`/cart/${venues._id}`);
+        }
+        else{
         
         await booking.create({
             cityname,

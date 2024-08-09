@@ -13,8 +13,6 @@ let bookingSchema=new mongoose.Schema({
     },
     userNumber:{
         type:String,
-        required:true,
-        unique:true,
     },
     bookingDate:{
         type:String,

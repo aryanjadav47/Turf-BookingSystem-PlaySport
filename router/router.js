@@ -73,7 +73,7 @@ router.get("/login",(req,res)=>{
 router.post("/add",async(req,res)=>{
     
     try {
-        let {name,email,password}=req.body;
+        let {name,email,password,number}=req.body;
 
         let users= await  user.findOne({email : email});
         if(users) {
@@ -86,6 +86,7 @@ router.post("/add",async(req,res)=>{
                         name,
                         email,
                         password,
+                        number,
                     });
 
                     
